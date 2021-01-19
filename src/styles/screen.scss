@@ -1,0 +1,416 @@
+@use 'reset';
+@import './colors';
+
+@mixin backgroundCover($url) {
+  background: url($url) center center / cover;
+}
+
+@mixin flex($dir, $jc, $ai) {
+  display: flex;
+  flex-flow: $dir;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+// GLOBAL
+.d-block {
+  display: block;
+}
+
+.grid-container--2-col {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  padding-right: 3rem;
+  border-bottom: 1px solid $dark-blue;
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: $dark-sand;
+}
+
+p {
+  margin: 0;
+
+  &:first-child {
+    margin-top: 1rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  grid-row: 1 / span 2;
+  display: block;
+}
+
+button {
+  &.btn {
+    background-color: #fff;
+    border: 1px solid $blue;
+    border-right: 3px solid $blue;
+    border-bottom: 3px solid $blue;
+    margin: .5rem auto;
+    width: 50%;
+    border-radius: 0;
+    height: 3rem;
+
+    &:hover {
+      background-color: $sand;
+      border-color: $dark-blue;
+      border-width: 1px 4px 4px 1px;
+    }
+  }
+
+  &.btn--tr {
+    width: 30px;
+    height: 30px;
+    border: none;
+
+  }
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0 1.6rem;
+  background-color: #fff;
+  border: 1px solid $blue;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  height: 3rem;
+
+
+  &:hover {
+    background-color: $dark-sand;
+    border-color: $dark-blue;
+    border-width: 1px 4px 4px 1px;
+  }
+}
+
+button:disabled {
+  color: $sand;
+  background: rgb(117, 38, 52) !important;
+  opacity: .1 !important;
+}
+
+.names {
+  text-transform: capitalize;
+}
+
+.form-group {
+  width: 450px;
+  display: inline-block;
+  //@include flex(row, space-between, null);
+
+  label,
+  input {
+    display: block !important;
+  }
+
+  input {
+    width: 300px;
+  }
+}
+
+header,
+footer {
+  background: $dark-blue;
+  color: $sand;
+  padding-bottom: 1rem;
+
+  & ul {
+    display: flex;
+    width: 50%;
+    margin: 1rem auto;
+    flex-flow: row;
+    justify-content: space-evenly;
+
+    li {
+      border-bottom: 2px solid $sand;
+      width: 20%;
+      text-align: center;
+      font-variant: small-caps;
+      color: $sand;
+
+
+      &:hover {
+        background: $dark-sand;
+        border-bottom: none;
+
+      }
+
+      &>a>div {
+        color: $sand;
+
+      }
+    }
+  }
+}
+
+.copyright{
+  text-align: center;
+  color: $sand;
+  padding-top: 1rem;
+}
+
+.btnBox--abs {
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.intro {
+  height: 80vh;
+
+  &__hero__img{
+    display: inherit;
+    height: inherit;
+    margin: auto;
+  }
+
+  &__login {
+    @include backgroundCover('/img/login.jpg')
+  }
+
+  &__toPost {
+    @include backgroundCover('/img/toPostsBg.jpg');
+  }
+}
+
+main {
+  position: relative;
+
+  &>h1 {
+    margin: 1rem auto 3rem;
+    border-bottom: 1px solid $dark-blue;
+    width: 40%;
+    padding-bottom: .8rem;
+  }
+}
+
+.blogpost,
+.comment {
+  display: flex;
+  padding: 1rem;
+  margin: .5rem auto 2rem;
+  border: 1px solid $dark-blue;
+  border-left-width: 10px;
+  width: 60%;
+
+  article {
+    flex: 4;
+    position: relative;
+
+    & div:nth-child(3) {
+      position: absolute;
+      bottom: 0;
+    }
+
+    & .body-txt {
+      margin-bottom: 2rem;
+      padding-right: 3rem;
+    }
+  }
+}
+
+.create-post {
+  @include flex(row nowrap, space-evenly, center);
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: .6rem;
+  padding: .5rem .8rem;
+  background: $dark-blue;
+  font-variant: small-caps;
+  transition: all .2s ease-in-out;
+  color: $sand;
+
+  svg[data-icon="plus-square"] path {
+    fill: $sand;
+    transition: all .5s ease-in-out;
+  }
+
+  .create-post__txt {
+    margin-right: 1rem;
+    color: inherit;
+  }
+
+  .create-post:hover {
+    color: $dark-blue;
+    background: $light-blue;
+    //transition: all .3s ease-in-out;
+    text-decoration: none;
+
+    svg[data-icon="plus-square"] path {
+      fill: $dark-blue;
+    }
+  }
+
+  .create-post__txt {
+    display: block;
+    text-align: center;
+  }
+}
+
+.user-info {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  flex: 2;
+  border-left: 2px solid $blue;
+  position: relative;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  height: 80vh;
+  overflow: scroll;
+
+  .grid__col--1 {
+    background: $sand;
+    padding: 1rem 3rem;
+
+    img {
+      display: inline-block;
+    }
+
+    .comment--info {
+      text-align: right;
+    }
+  }
+}
+
+.auteur--gegevens>p.auteur,
+.auteur--gegevens>a {
+  display: inline-block;
+}
+
+// COMMENTS
+.comment {
+  width: 90%;
+  display: block;
+}
+
+.error {
+  color: red;
+}
+
+.comment-icon {
+  max-width: 1.5rem;
+}
+
+
+h2.auteur {
+  margin: 0;
+  width: auto;
+  font-size: 1rem;
+  display: flex
+}
+
+.detail--aside {
+
+  h2.auteur,
+  a {
+    margin: 0;
+    width: auto;
+    font-size: 1rem;
+  }
+
+  img {
+    display: inline;
+    max-width: 50%;
+    margin: 0;
+  }
+}
+
+
+// ----------------
+// PROFILE
+#profile-header {
+  h1 {
+    text-align: center;
+    margin: 1rem auto 2rem;
+    border-bottom: 1px solid $dark-blue;
+    width: 40%;
+    padding-bottom: .8rem;
+  }
+
+  h2,
+  &+section h2 {
+    text-align: center;
+    padding-top: 0;
+    font-size: 1.6rem;
+    color: $dark-sand;
+    font-style: italic;
+  }
+
+  &+section h2 {
+    margin-top: 5rem;
+    color: inherit;
+    font-style: inherit
+  }
+
+  #profile__stats {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+}
+
+.profile--posts--list {
+  @include flex(row wrap, space-evenly, baseline);
+
+  .card {
+    text-align: right;
+    width: 45%;
+    min-height: 150px;
+    padding: 1rem;
+    margin: .5rem auto 2rem;
+    border: 1px solid $dark-blue;
+    border-left-width: 10px;
+    border-radius: 0;
+
+    &-title {
+      border-bottom: 1px solid $dark-blue;
+    }
+  }
+}
+
+// ----------------
+//PAGINATION
+.pagination {
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: center;
+
+  &>div>a {
+    display: block;
+    color: #000;
+    width: 2rem;
+    text-align: center;
+    padding: .5rem 0;
+    margin: 0 .5rem;
+    border: 1px solid gray;
+
+    & .btn--active {
+      font-weight: bold;
+    }
+  }
+}
+
+#logout {
+  text-align: center;
+}
